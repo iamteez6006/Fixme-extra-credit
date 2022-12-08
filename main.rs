@@ -21,13 +21,23 @@ impl Display for City {
                self.name, self.lat.abs(), lat_c, self.lon.abs(), lon_c)
     }
 }
-
+#[allow(dead_code)]
 #[derive(Debug)]
 struct Color {
-    red: u8,
+    red: u8,  ///variables for struct
     green: u8,
     blue: u8,
 }
+
+impl fmt::Display for Color
+{
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result
+    {
+        write!(f, "red: {}, green: {}, blue: {}", self.red, self.green, self.blue)
+    }
+}
+// The formatting syntax for std::fmt consists of two parts:position or name and formatting 
+
 
 fn main() {
     for city in [
@@ -43,7 +53,8 @@ fn main() {
         Color { red: 0, green: 3, blue: 254 },
         Color { red: 0, green: 0, blue: 0 },
     ].iter() {
-        // Hint : Fix the code so you can print it using {}
-        println!("{:?}", *color);
+      
+        println!("{}", *color);
     }
 }
+// If neither part of the syntax is present, the display trait and matching index of are used by default.
